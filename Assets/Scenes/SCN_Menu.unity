@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015217302745992648, guid: f8aa39feebaecb846a3c805703cbb77c, type: 3}
       propertyPath: m_text
-      value: Sair
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 7221248908299715122, guid: f8aa39feebaecb846a3c805703cbb77c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3041,7 +3041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015217302745992648, guid: f8aa39feebaecb846a3c805703cbb77c, type: 3}
       propertyPath: m_text
-      value: Sobre
+      value: Credits
       objectReference: {fileID: 0}
     - target: {fileID: 7221248908299715122, guid: f8aa39feebaecb846a3c805703cbb77c, type: 3}
       propertyPath: m_Interactable
@@ -4223,7 +4223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015217302745992648, guid: f8aa39feebaecb846a3c805703cbb77c, type: 3}
       propertyPath: m_text
-      value: Jogar
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 7221248908299715122, guid: f8aa39feebaecb846a3c805703cbb77c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
