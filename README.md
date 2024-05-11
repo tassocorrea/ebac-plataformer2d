@@ -1,3 +1,3 @@
 Aluno: Tasso Corrêa
 
-Repositório: ebacunity/ebac-platformer2d
+Repositório: tassocorrea/ebac-platformer2d
