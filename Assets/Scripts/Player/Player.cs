@@ -12,7 +12,11 @@ public class Player : MonoBehaviour
 
     public float speed;
 
+    public float speedRun;
+
     public float forcejump = 2;
+
+    private float _currentSpeed;
 
     private void Update()
     {
@@ -23,15 +27,22 @@ public class Player : MonoBehaviour
 
     private void HandleMoviment()
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+            _currentSpeed = speedRun;
+        else
+        _currentSpeed = speed;
+
+
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //myrigidbody.MovePosition(myrigidbody.position - velocity * Time.deltaTime);
-            myrigidbody.velocity = new Vector2(-speed, myrigidbody.velocity.y);
+            myrigidbody.velocity = new Vector2(-_currentSpeed, myrigidbody.velocity.y);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             //myrigidbody.MovePosition(myrigidbody.position + velocity * Time.deltaTime);
-            myrigidbody.velocity = new Vector2(speed, myrigidbody.velocity.y);
+            myrigidbody.velocity = new Vector2(_currentSpeed, myrigidbody.velocity.y);
 
         }
 
