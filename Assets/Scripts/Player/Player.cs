@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public float jumpScaleY = 1.5f;
     public float jumpScaleX = 0.8f;
    
+
     public float animationDuration = .3f;
     public Ease ease = Ease.OutBack;
 
@@ -31,11 +32,16 @@ public class Player : MonoBehaviour
 
     private float _currentSpeed;
     private bool _isrunning = false;
+    public bool OnFloor;
+    public Transform DetectFloor;
+    public LayerMask WhatIsFloor;
 
     private void Update()
     {
         HandleJump();
-        HandleMoviment();            
+        HandleMoviment();
+
+        OnFloor = Physics2D.OverlapCircle(DetectFloor.position, 0.2f, WhatIsFloor);
         
     }
 
@@ -44,22 +50,30 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
             _currentSpeed = speedRun;
         else
-        _currentSpeed = speed;
+            _currentSpeed = speed;
 
 
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-           
+
             myrigidbody.velocity = new Vector2(-_currentSpeed, myrigidbody.velocity.y);
             if (myrigidbody.transform.localScale.x != -1)
             {
                 myrigidbody.transform.DOScaleX(-1, playerSwipeDuration);
+               
+
+
             }
 
             animator.SetBool(boolRun, true);
 
+
         }
+
+       
+
+
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             
@@ -67,6 +81,7 @@ public class Player : MonoBehaviour
             if (myrigidbody.transform.localScale.x != 1)
             {
                 myrigidbody.transform.DOScaleX(1, playerSwipeDuration);
+                
             }
 
 
@@ -94,23 +109,31 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && OnFloor == true)
         {
             myrigidbody.velocity = Vector2.up * forcejump;
-            myrigidbody.transform.localScale = Vector2.one;
+            //myrigidbody.transform.localScale = Vector2.one;
+            
+
+
+
 
             DOTween.Kill(myrigidbody.transform);
 
             HandleScaleJump();
         }
 
+      
+
     }
 
     private void HandleScaleJump()
     {
-        myrigidbody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);            
-        myrigidbody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        
+
+        myrigidbody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        //myrigidbody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+    
+
     }
 
 
