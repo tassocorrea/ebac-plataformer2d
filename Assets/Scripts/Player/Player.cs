@@ -32,16 +32,16 @@ public class Player : MonoBehaviour
 
     private float _currentSpeed;
     private bool _isrunning = false;
-    public bool OnFloor;
-    public Transform DetectFloor;
-    public LayerMask WhatIsFloor;
+    //public bool OnFloor;
+    //public Transform DetectFloor;
+    //public LayerMask WhatIsFloor;
 
     private void Update()
     {
         HandleJump();
         HandleMoviment();
 
-        OnFloor = Physics2D.OverlapCircle(DetectFloor.position, 0.2f, WhatIsFloor);
+        //OnFloor = Physics2D.OverlapCircle(DetectFloor.position, 0.2f, WhatIsFloor);
         
     }
 
@@ -109,7 +109,8 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && OnFloor == true)
+        //if (Input.GetKeyDown(KeyCode.Space) && OnFloor == true)
+            if (Input.GetKeyDown(KeyCode.Space))
         {
             myrigidbody.velocity = Vector2.up * forcejump;
             //myrigidbody.transform.localScale = Vector2.one;
