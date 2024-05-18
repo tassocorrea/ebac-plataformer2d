@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 {
 
     public Rigidbody2D myrigidbody;
+    public HealthBase healthbase;
+
 
     [Header("Speed setup")]
     public Vector2 friction = new Vector2(.1f, 0);
@@ -26,31 +28,61 @@ public class Player : MonoBehaviour
 
     [Header("Animation player")]
     public string boolRun = "Run";
+    public string triggerDeath = "Death";
     public Animator animator;
     public float playerSwipeDuration = .1f;
 
 
     private float _currentSpeed;
     private bool _isrunning = false;
-    //public bool OnFloor;
-    //public Transform DetectFloor;
-    //public LayerMask WhatIsFloor;
+    public bool OnFloor;
+    public Transform DetectFloor;
+    public LayerMask WhatIsFloor;
+
+
+
+    private void Awake()
+    {
+        if (healthbase != null)
+        {
+            healthbase.OnKill += OnPlayerKill;
+        }
+    }
+
+
+    private void OnPlayerKill()
+    {
+        healthbase.OnKill -= OnPlayerKill;
+
+        animator.SetTrigger(triggerDeath);
+
+    }
 
     private void Update()
     {
         HandleJump();
         HandleMoviment();
 
-        //OnFloor = Physics2D.OverlapCircle(DetectFloor.position, 0.2f, WhatIsFloor);
+        OnFloor = Physics2D.OverlapCircle(DetectFloor.position, 0.2f, WhatIsFloor);
         
     }
 
     private void HandleMoviment()
     {
         if (Input.GetKey(KeyCode.LeftShift))
+        {
+
             _currentSpeed = speedRun;
+            animator.speed = 2;
+
+        }
+
         else
+        {
             _currentSpeed = speed;
+            animator.speed = 1;
+        
+        }
 
 
 
@@ -62,7 +94,7 @@ public class Player : MonoBehaviour
             {
                 myrigidbody.transform.DOScaleX(-1, playerSwipeDuration);
                
-
+                
 
             }
 
@@ -110,11 +142,13 @@ public class Player : MonoBehaviour
     private void HandleJump()
     {
         //if (Input.GetKeyDown(KeyCode.Space) && OnFloor == true)
-            if (Input.GetKeyDown(KeyCode.Space))
+
+            if (Input.GetKeyDown(KeyCode.Space) && OnFloor == true)
         {
             myrigidbody.velocity = Vector2.up * forcejump;
             //myrigidbody.transform.localScale = Vector2.one;
-            
+
+           
 
 
 
@@ -135,6 +169,11 @@ public class Player : MonoBehaviour
         //myrigidbody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     
 
+    }
+
+    public void DestroyMe() 
+    {
+        Destroy(gameObject);
     }
 
 
