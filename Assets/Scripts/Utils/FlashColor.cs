@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class FlashColor : MonoBehaviour
 {
+
+    
     public List<SpriteRenderer> spriteRenderers;
     public Color color = Color.red;
     public float duration = .3f;

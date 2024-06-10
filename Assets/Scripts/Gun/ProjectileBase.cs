@@ -6,6 +6,8 @@ using UnityEngine;
 public class ProjectileBase : MonoBehaviour
 {
 
+
+
     public Vector3 direction;
 
     public float timeToDestroy = 1f;
