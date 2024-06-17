@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D myrigidbody;
     public HealthBase healthbase;
-   
+      
 
     [Header("Setup")]
     public SOPlayerSetup soPlayerSetup;
@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
         }
 
         _currentPlayer = Instantiate(soPlayerSetup.player, transform);
+        _currentPlayer.GetComponentInChildren<PlayerDestroyHelper>().player = this;
+        _currentPlayer.GetComponentInChildren<GunBase>()._sidePlayerReference = transform;
     }
 
    

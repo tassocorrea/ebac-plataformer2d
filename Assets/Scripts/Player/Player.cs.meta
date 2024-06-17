@@ -3,7 +3,11 @@ guid: 8ab224e7af2c50b4dbeeb4ffd2374c22
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - myrigidbody: {instanceID: 0}
+  - healthbase: {instanceID: 0}
+  - soPlayerSetup: {fileID: 11400000, guid: 7465ff84b811d2d4faea6205a1b41386, type: 2}
+  - DetectFloor: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

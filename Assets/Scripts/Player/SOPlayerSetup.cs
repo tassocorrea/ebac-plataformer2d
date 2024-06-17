@@ -11,9 +11,7 @@ public class SOPlayerSetup : ScriptableObject
 {
     public Animator player;
     public SOString soStringName;
-      
-
-
+   
 
 
 

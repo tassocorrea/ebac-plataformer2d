@@ -1,36 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEditor;
 
 
 public class GunBase : MonoBehaviour
 {
 
 
+  
+
     public ProjectileBase prefabProjectitle;
    
     public Transform positionToShoot;
     public float timeBetweenShoot = .3f;
-    public Transform playerSideReference;
+    public Transform _sidePlayerReference;
 
+
+  
 
     private Coroutine _currentCoroutine;
-  
-        
-        void Update()
+
+
+
+    void Update()
     {
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
             _currentCoroutine = StartCoroutine(StartShoot());
+           
         }
 
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
            if (_currentCoroutine != null) 
+
                 StopCoroutine(_currentCoroutine);
+               
         }
 
-
+        
     }
 
     IEnumerator StartShoot()
@@ -48,7 +58,8 @@ public class GunBase : MonoBehaviour
     {
         var projectile = Instantiate(prefabProjectitle);
         projectile.transform.position = positionToShoot.position;
-        projectile.side = playerSideReference.transform.localScale.x;
+        projectile.side = _sidePlayerReference.transform.localScale.x;
+
        
     }
 
